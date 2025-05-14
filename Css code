@@ -1,0 +1,88 @@
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.5s ease, color 0.5s ease; /* Optional: Smooth theme transition */
+}
+
+/* Theme Styles */
+body.light-theme {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+body.dark-theme {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+body.dark-theme h1,
+body.dark-theme h2 {
+    color: #eee;
+}
+
+
+/* Style for the animated box */
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: steelblue;
+    margin: 20px auto; /* Center the box roughly */
+    border-radius: 8px;
+    /* Add transition for properties *not* in the animation, if needed */
+    /* transition: background-color 0.3s ease; */
+}
+
+/* Define the CSS Animation Keyframes */
+@keyframes bounceAndSpin {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        background-color: steelblue;
+    }
+    50% {
+        transform: translateY(-50px) rotate(180deg);
+        background-color: tomato;
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+        background-color: steelblue;
+    }
+}
+
+/* CSS class to apply the animation - added/removed by JavaScript */
+.box.animate {
+    animation: bounceAndSpin 1.5s ease-in-out; /* Duration, timing function */
+    /* Use forwards if you want it to stay at the end state, but usually you remove the class */
+    /* animation-fill-mode: forwards; */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+hr {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
