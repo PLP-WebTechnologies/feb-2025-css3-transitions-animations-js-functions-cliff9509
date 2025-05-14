@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Web Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Dynamic Features</h1>
+
+    <div id="animatedBox" class="box"></div>
+
+    <button id="triggerAnimationBtn">Animate the Box!</button>
+
+    <hr>
+
+    <h2>User Preferences (Local Storage)</h2>
+
+    <label for="themePreference">Preferred Theme:</label>
+    <select id="themePreference">
+        <option value="light">Light Theme</option>
+        <option value="dark">Dark Theme</option>
+    </select>
+
+    <button id="savePreferenceBtn">Save Preference</button>
+
+    <p>Current saved preference: <span id="savedPreferenceDisplay"></span></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
