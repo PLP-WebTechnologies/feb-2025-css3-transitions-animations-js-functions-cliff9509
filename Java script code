@@ -1,0 +1,72 @@
+// Wait for the DOM to be fully loaded before running the script
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Get references to HTML elements ---
+    const animatedBox = document.getElementById('animatedBox');
+    const triggerBtn = document.getElementById('triggerAnimationBtn');
+    const themeSelect = document.getElementById('themePreference');
+    const saveBtn = document.getElementById('savePreferenceBtn');
+    const displaySpan = document.getElementById('savedPreferenceDisplay');
+
+    // --- Local Storage Functions ---
+
+    // Function to save the selected preference
+    const savePreference = () => {
+        const selectedTheme = themeSelect.value;
+        localStorage.setItem('userThemePreference', selectedTheme); // Store the preference
+        applyPreference(selectedTheme); // Apply it immediately
+        console.log(`Preference saved: ${selectedTheme}`);
+    };
+
+    // Function to retrieve and apply the saved preference
+    const loadPreference = () => {
+        const storedPreference = localStorage.getItem('userThemePreference'); // Retrieve the preference
+        if (storedPreference) {
+            // If a preference was found in local storage
+            themeSelect.value = storedPreference; // Set the dropdown to the saved value
+            applyPreference(storedPreference);    // Apply the theme to the page
+            console.log(`Preference loaded: ${storedPreference}`);
+        } else {
+            // If no preference is found, apply the default from the select element and save it
+            const defaultTheme = themeSelect.value;
+            applyPreference(defaultTheme);
+            savePreference(); // Save the initial state
+            console.log(`No preference found, applying default and saving: ${defaultTheme}`);
+        }
+    };
+
+    // Function to apply the theme preference to the body
+    const applyPreference = (theme) => {
+        // Set a class on the body to control theme styles via CSS
+        document.body.className = theme + '-theme';
+        displaySpan.textContent = theme; // Update the display text
+    };
+
+    // --- Animation Functions ---
+
+    // Function to trigger the CSS animation by adding a class
+    const triggerAnimation = () => {
+        // Add the 'animate' class to the box
+        animatedBox.classList.add('animate');
+        // The CSS transition/animation will take over from here
+    };
+
+    // --- Event Listeners ---
+
+    // Listen for the button click to trigger the animation
+    triggerBtn.addEventListener('click', triggerAnimation);
+
+    // Listen for the animation to end, then remove the class so it can be triggered again
+    animatedBox.addEventListener('animationend', () => {
+        animatedBox.classList.remove('animate');
+        console.log('Animation ended');
+    });
+
+    // Listen for the button click to save the preference
+    saveBtn.addEventListener('click', savePreference);
+
+    // --- Initial Load ---
+    // Load the user preference when the page loads
+    loadPreference();
+
+}); // End DOMContentLoaded listener
